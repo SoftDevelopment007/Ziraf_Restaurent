@@ -1,0 +1,43 @@
+<div class="horizontal-scroll">
+  <p>&nbsp;</p>
+  <table class="table" st-table="smartTableData">
+    <thead>
+    <tr>
+      <th>
+        <div class="input-group">
+          <input st-search="email" placeholder="Search Email Address" class="form-control" type="search"><span class="input-group-addon addon-right"><i class="fa fa-search"></i></span>
+        </div>
+      </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="item in smartTableData">
+      <td class="feed-message row">
+        <div class="message-icon col-md-2 no_margin">
+          <img ng-src="{{item._id | myProfile}}">
+        </div>
+        <div class="message-icon col-md-3 left padding no_margin">
+          <h4 class="email_link">{{item.name}}</h4>
+          <p class="user_span">{{item.email}}</p>
+          <p class="user_span"><i class="fa fa-envelope" ng-show='item.type=="e"'></i><i class="fa fa-google-plus-square" ng-show='item.type=="g"'></i><i class="fa fa-facebook-official" ng-show='item.type=="f"'></i></p>
+        </div>
+        <div class="message-icon col-md-3 left padding no_margin">
+          <p class="no_margin"><i class="fa fa-sign-in"></i> Created: {{item.created_date | date : 'y-MM-d'}}</p>
+          <p class="no_margin"><i class="fa fa-pencil-square-o"></i> Updated: {{item.updated_date | date : 'y-MM-d'}}</p>
+        </div>
+        <div class="message-icon col-md-3 center padding no_margin">
+          <button type="button" class="btn btn-primary btn-with-icon btn-sm user_btn" ng-click="view(item._id)"><i class="fa fa-eye"></i>View</button>
+          <button type="button" class="btn btn-danger btn-with-icon btn-sm user_btn" ng-click="remove(item._id)"><i class="fa fa-times"></i>Remove</button>
+        </div>
+      </td>
+    </tr>
+    </tbody>
+    <tfoot>
+    <tr>
+      <td colspan="8" class="text-center">
+        <div st-pagination="" st-items-by-page="smartTablePageSize" st-displayed-pages="5"></div>
+      </td>
+    </tr>
+    </tfoot>
+  </table>
+</div>

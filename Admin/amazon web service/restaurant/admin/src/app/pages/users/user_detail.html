@@ -1,0 +1,47 @@
+<div>
+  <div class="message">
+    <div class="row">
+      <button type="button" class="back-button btn btn-default btn-with-icon" ng-click="back()"><i class="ion-chevron-left"></i>Back</button>
+    </div>
+    <p>&nbsp;</p>
+    <div class="row">
+      <div class="col-md-4 center">
+        <img ng-src="{{info.user._id | myProfile}}" class="profile">
+        <p>&nbsp;</p>
+        <p class="user_span"><span ng-show='info.user.type=="e"'><i class="fa fa-envelope"></i> Email Login</span><span ng-show='info.user.type=="g"'><i class="fa fa-google-plus-square"></i> Google Login</span>
+          <span ng-show='info.user.type=="f"'><i class="fa fa-facebook-official"></i> Facebook Login</span>
+        </p>
+      </div>
+      <div class="col-md-8 no-padding">
+        <div class="message-details row">
+          <div class="col-md-6 no-padding">
+            <span>Name: {{info.user.name}}</span>
+          </div>
+          <div class="col-md-6 no-padding">
+            <span>Email: {{info.user.email}}</span>
+          </div>
+        </div>
+        <div class="line"></div>
+        <div class="message-details row">
+          <div class="col-md-6 no-padding">
+            <span>Quote: {{info.user.quote}}</span>
+          </div>
+        </div>
+        <div class="line"></div>
+        <div class="message-details row">
+          <div class="col-lg-6 col-md-6 col-xs-12 no-padding">
+            <span>Create: {{info.user.created_date | date : 'MMMM d, y'}}</span>
+          </div>
+          <div class="col-lg-6 col-md-6 col-xs-12 no-padding">
+            <span>Last Update: {{info.user.updated_date | date : 'MMMM d, y'}}</span>
+          </div>
+        </div>
+        <div class="line"></div>
+        <p>&nbsp;</p>
+        <div class="message-details row">
+          <div include-with-scope='app/pages/users/tab.html'></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

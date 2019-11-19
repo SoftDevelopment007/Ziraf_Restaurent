@@ -1,0 +1,68 @@
+<uib-tabset>
+  <uib-tab heading="Restaurants">
+    <div ba-panel ba-panel-class="medium-panel with-scroll light-text">
+      <p ng-show='info.rest_info.length==0'>There is no any favorite restaurants.</p>
+      <p>&nbsp;</p>
+      <table class="table" st-table="info.rest_info" ng-hide='info.rest_info.length==0'>
+        <thead>
+          <tr class="sortable black-muted-bg">
+            <th class="center" st-sort="id" st-sort-default="true" style="width:5%">#</th>
+            <th class="center">Picture</th>
+            <th class="center">Name</th>
+            <th class="center">Rating</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="item in info.rest_info">
+            <td class="middle" style="width:5%">{{$index}}</td>
+            <td class="middle">
+              <div class="feed-message3">
+                <div class="message-icon">
+                  <img ng-src="{{item.pic | myRestPhoto}}">
+                </div>
+              </div>
+            </td>
+            <td class="middle center">{{item.name}}</td>
+            <td class="middle center">{{item.rating}}</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="8" class="text-center">
+              <div st-pagination="" st-items-by-page="smartTablePageSize" st-displayed-pages="5"></div>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </uib-tab>
+  <uib-tab heading="Preferences">
+    <div ba-panel ba-panel-class="medium-panel with-scroll light-text">
+      <p ng-show='info.answers.length==0'>There is no any user answers.</p>
+      <p>&nbsp;</p>
+      <table class="table" st-table="info.answers" ng-hide='info.answers.length==0'>
+        <thead>
+          <tr class="sortable black-muted-bg">
+            <th class="center" st-sort="id" st-sort-default="true" style="width:5%">#</th>
+            <th class="center">Question</th>
+            <th class="center">Answers</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="item in info.answers">
+            <td class="middle" style="width:5%">{{$index}}</td>
+            <td class="middle">{{item.question}}</td>
+            <td class="middle"><span ng-repeat="ans in item.answers">{{ans}}, </span></td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="8" class="text-center">
+              <div st-pagination="" st-items-by-page="smartTablePageSize" st-displayed-pages="5"></div>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </uib-tab>
+</uib-tabset>

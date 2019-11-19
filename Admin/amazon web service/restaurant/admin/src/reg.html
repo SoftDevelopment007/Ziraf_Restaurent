@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ziraf</title>
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900italic,900&subset=latin,greek,greek-ext,vietnamese,cyrillic-ext,latin-ext,cyrillic' rel='stylesheet' type='text/css'>
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="assets/img/favicon-96x96.png">
+
+  <!-- build:css({.tmp/serve,src}) styles/vendor.css -->
+  <!-- bower:css -->
+  <!-- run `gulp inject` to automatically populate bower styles dependencies -->
+  <!-- endbower -->
+  <!-- endbuild -->
+
+  <!-- build:css({.tmp/serve,src}) styles/auth.css -->
+  <!-- inject:css -->
+  <!-- css files will be automatically insert here -->
+  <!-- endinject -->
+  <!-- endbuild -->
+</head>
+<body>
+  <main class="auth-main">
+    <div class="auth-block">
+      <h1>Reset Ziraf Admin</h1>
+      <a href="auth.html" class="auth-link">Already have a Ziraf Admin account? Sign in!</a>
+      <div class="alert" id="l-error"></div>
+      <div>   
+        <div class="form-group">
+          <label for="oEmail" class="col-sm-4 control-label">Old Email</label>
+          <div class="col-sm-8">
+            <input type="email" class="form-control" id="oEmail" placeholder="Email">
+          </div>
+          <span class="col-sm-offset-5 help-block error-block basic-block">Proper old email required</span>
+        </div>
+        <p>&nbsp;</p>
+        <div class="form-group">
+          <label for="oPass" class="col-sm-4 control-label">Old Password</label>
+          <div class="col-sm-8">
+            <input type="password" class="form-control" id="oPass" placeholder="Password">
+          </div>
+          <span class="col-sm-offset-5 help-block error-block basic-block">Proper old password required</span>
+        </div>
+        <p>&nbsp;</p>
+        <div class="form-group">
+          <label for="email" class="col-sm-4 control-label">New Email</label>
+          <div class="col-sm-8">
+            <input type="email" class="form-control" id="email" placeholder="Email">
+          </div>
+          <span class="col-sm-offset-5 help-block error-block basic-block">Proper new email required</span>
+        </div>
+        <p>&nbsp;</p>
+        <div class="form-group">
+          <label for="pass" class="col-sm-4 control-label">New Password</label>
+          <div class="col-sm-8">
+            <input type="password" class="form-control" id="pass" placeholder="Password">
+          </div>
+          <span class="col-sm-offset-5 help-block error-block basic-block">Proper new password required</span>
+        </div>
+        <p>&nbsp;</p>
+        <div class="form-group">
+          <label for="passA" class="col-sm-4 control-label">Confirm Password</label>
+          <div class="col-sm-8">
+            <input type="password" class="form-control" id="passA" placeholder="Password">
+          </div>
+          <span class="col-sm-offset-5 help-block error-block basic-block">Proper confirm password required</span>
+          <span class="col-sm-offset-5" id="c-error">passwords do not match.</span>
+        </div>
+        <p>&nbsp;</p>
+        <div>
+          <div class="col-sm-offset-5 col-sm-4">
+            <button class="btn btn-default btn-auth" id="reset">Reset Admin</button>
+          </div>
+        </div>
+      </div>
+    </div>  
+  </main>
+  <!-- build:js(src) scripts/vendor.js -->
+  <!-- bower:js -->
+  <!-- run `gulp inject` to automatically populate bower script dependencies -->
+  <!-- endbower -->
+  <!-- endbuild -->
+  <script type="text/javascript" src="app/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<div class="modal-content">
+  <div class="modal-header">
+    <button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
+      <em class="ion-ios-close-empty sn-link-close"></em>
+    </button>
+    <h4 class="modal-title">Change Main Category</h4>
+  </div>
+  <div class="modal-body">
+    <table class="table">
+		<tbody>
+	    <tr>
+	    <td class="middle">
+	    	<div class="feed-message2 table_img1">
+            <div class="message-icon">
+	    	<div class="userpic1">
+	            <div class="userpic-wrapper">
+	              <img ng-src="{{info.change.id | myCaPhoto}}" ng-show='info.main_photo==""' ng-click="uploadPicture()">
+	              <img ng-src="{{info.main_photo}}" ng-click="uploadPicture()" ng-hide='info.main_photo==""'>
+	            </div>
+	            <a href class="change-userpic" ng-click="uploadPicture()">change</a>
+	            <input type="file" ng-show="false" id="uploadFile" ng-file-select="onFileSelect($files)">
+	        </div>
+	        </div>
+	        </div>
+	    </td>
+	    <td class="middle" style="width:70%;">Name: <input type="text" class="input-sm form-control" placeholder="input new main category name." ng-model="info.change.name"></td>
+	    </tr>
+	    </tbody>
+	</table>
+	<div class="right margin">
+		<button class="btn btn-success" ng-click="change_main()"><i class="fa fa-plus"></i> Change</button>
+	</div>
+  </div>
+</div>

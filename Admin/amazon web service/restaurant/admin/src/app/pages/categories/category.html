@@ -1,0 +1,163 @@
+<uib-tabset active="info.active">
+  <uib-tab heading="Main Categories">
+    <div ba-panel ba-panel-class="xmedium-panel with-scroll light-text">
+      <table class="table" st-table="info.main_ca" >
+        <thead>
+          <tr class="sortable black-muted-bg">
+            <th class="center" st-sort="id" st-sort-default="true" style="width:5%">#</th>
+            <th class="center">Picture</th>
+            <th class="center">Name</th>
+            <th width="10%"></th>
+            <th width="10%"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="item in info.main_ca">
+            <td class="middle" style="width:5%">{{$index}}</td>
+            <td class="middle" style="width:100px;" ng-click="showImg(item._id)">
+              <div class="feed-message2">
+                <div class="message-icon">
+                  <img ng-src="{{item._id | myCaPhoto}}">
+                </div>
+              </div>
+            </td>
+            <td class="middle center">{{item.name}}</td>
+            <td class="middle"><button type="button" class="btn btn-success btn-with-icon btn-xs" ng-click="change_main_cat(item._id, item.name)"><i class="fa fa-pencil-square-o"></i> Change</button></td>
+            <td class="middle"><button class="btn btn-danger btn-xs" ng-click="remove_main(item._id)"><i class="fa fa-times"></i> Remove</button></td>
+          </tr>
+          <tr>
+            <td class="middle" style="width:5%"></td>
+            <td class="middle" style="width:100px;">
+              <div class="feed-message2">
+                <div class="message-icon">
+                  <div class="userpic1">
+                    <div class="userpic-wrapper">
+                      <img ng-src="{{info.main_photo | noImage}}" ng-show='info.main_photo==""' ng-click="uploadPicture()" class="table_img">
+                      <img ng-src="{{info.main_photo}}" ng-click="uploadPicture()" ng-hide='info.main_photo==""' class="table_img">
+                    </div>
+                    <a href class="change-userpic" ng-click="uploadPicture()">change</a>
+                    <input type="file" ng-show="false" id="uploadFile" ng-file-select="onFileSelect($files)">
+                  </div>
+                </div>
+              </div>
+            </td>
+            <td class="middle center"><input type="text" class="input-sm form-control" placeholder="input new main category name." ng-model="info.main_name"></td>
+            <td></td>
+            <td class="middle"><button class="btn btn-success" ng-click="add_main()"><i class="fa fa-plus"></i> Add</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </uib-tab>
+  <uib-tab heading="Header Categories">
+    <div ba-panel ba-panel-class="xmedium-panel with-scroll light-text">
+      <table class="table" st-table="info.header_ca" >
+        <thead>
+          <tr class="sortable black-muted-bg">
+            <th class="center" st-sort="id" st-sort-default="true" style="width:5%">#</th>
+            <th class="center">Name</th>
+            <th width="10%"></th>
+            <!-- <th width="10%"></th> -->
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="item in info.header_ca">
+            <td class="middle" style="width:5%">{{$index}}</td>
+            <td class="middle center"><p editable-textarea="item.name" e-placeholder="input content." e-required>{{item.name}}</p></td>
+            <td class="middle"><button type="button" class="btn btn-success btn-with-icon btn-xs" ng-click="change_header(item._id, item.name)"><i class="fa fa-pencil-square-o"></i> Change</button></td>
+            <!-- <td class="middle"><button class="btn btn-danger btn-xs" ng-click="remove_header(item._id)"><i class="fa fa-times"></i> Remove</button></td> -->
+          </tr>
+          <!-- <tr>
+            <td class="middle" style="width:5%"></td>
+            <td class="middle center"><input type="text" class="input-sm form-control" placeholder="input new header category name." ng-model="info.header_name"></td>
+            <td class="middle"><button class="btn btn-success" ng-click="add_header()"><i class="fa fa-plus"></i> Add</button></td>
+          </tr> -->
+        </tbody>
+      </table>
+      <p>&nbsp;</p>
+    </div>
+  </uib-tab>
+  <uib-tab heading="Sub Categories" ng-click='getSubCa()'>
+    <div ba-panel ba-panel-class="xmedium-panel with-scroll light-text">
+      <div class="form-group row">
+        <label class="col-md-offset-1 col-md-3 control-label">Header Category Name:</label>
+        <div class="col-md-8">
+          <div class="btn-group" uib-dropdown dropdown-append-to-body>
+            <button type="button" class="btn btn-default" uib-dropdown-toggle>
+              {{info.header_ca[info.header_index].name}} <span class="caret"></span>
+            </button>
+            <ul uib-dropdown-menu>
+              <li ng-repeat="item in info.header_ca"><a ng-click='sel_header(item._id)'>{{item.name}}</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <p>&nbsp;</p>
+      <table class="table" st-table="info.sub_ca" >
+        <thead>
+          <tr class="sortable black-muted-bg">
+            <th class="center" st-sort="id" st-sort-default="true" style="width:5%">#</th>
+            <th class="center">Name</th>
+            <th width="10%"></th>
+            <th width="10%"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="item in info.sub_ca">
+            <td class="middle" style="width:5%">{{$index}}</td>
+            <td class="middle center"><p editable-textarea="item.name" e-placeholder="input content." e-required>{{item.name}}</p></td>
+            <td class="middle"><button type="button" class="btn btn-success btn-with-icon btn-xs" ng-click="change_sub(item._id, item.name)"><i class="fa fa-pencil-square-o"></i> Change</button></td>
+            <td class="middle"><button class="btn btn-danger btn-xs" ng-click="remove_sub(item._id)"><i class="fa fa-times"></i> Remove</button></td>
+          </tr>
+          <tr>
+            <td class="middle" style="width:5%"></td>
+            <td class="middle center"><input type="text" class="input-sm form-control" placeholder="input new sub category name." ng-model="info.sub_name"></td>
+            <td></td>
+            <td class="middle"><button class="btn btn-success" ng-click="add_sub()"><i class="fa fa-plus"></i> Add</button></td>
+          </tr>
+        </tbody>
+      </table>
+      <p>&nbsp;</p>
+    </div>
+  </uib-tab>
+  <uib-tab heading="Questions" ng-click='getQue()'>
+    <div ba-panel ba-panel-class="xmedium-panel with-scroll light-text">
+      <table class="table" st-table="info.ques" >
+        <thead>
+          <tr class="sortable black-muted-bg">
+            <th class="center" st-sort="id" st-sort-default="true" style="width:5%">#</th>
+            <th class="center">Question</th>
+            <th class="center">Answers</th>
+            <th width="10%"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="item in info.ques">
+            <td class="middle" style="width:5%">{{$index}}</td>
+            <td class="middle center" style="width:40%"><p editable-textarea="item.question.question" e-placeholder="input content." e-required>{{item.question.question}}</p></td>
+            <td class="middle center" style="width:40%;line-height:18px;"><span ng-repeat="answer in item.answers">{{answer.name}}, </span></td>
+            <td class="middle"><button type="button" class="btn btn-danger btn-with-icon btn-xs" ng-click="change_que(item.question.id, item.question.question)"><i class="fa fa-pencil-square-o"></i>Change</button></td>
+          </tr>
+          <!-- <tr>
+            <td class="middle" style="width:5%"></td>
+            <td class="middle center"><input type="text" class="input-sm form-control" placeholder="input new question." ng-model="info.que"></td>
+            <td class="middle center">
+              <div class="form-group" style="margin-top:12px;">                
+                <div class="btn-group" uib-dropdown dropdown-append-to-body>
+                  <button type="button" class="btn btn-default" uib-dropdown-toggle>
+                    {{info.header_ca[info.que_index].name}} <span class="caret"></span>
+                  </button>
+                  <ul uib-dropdown-menu>
+                    <li ng-repeat="item in info.header_ca"><a ng-click='sel_que(item._id)'>{{item.name}}</a></li>
+                  </ul>
+                </div>
+              </div>
+            </td>
+            <td class="middle"><button class="btn btn-success" ng-click="add_que()"><i class="fa fa-plus"></i> Add</button></td>
+          </tr> -->
+        </tbody>
+      </table>
+      <p>&nbsp;</p>
+    </div>
+  </uib-tab>
+</uib-tabset>

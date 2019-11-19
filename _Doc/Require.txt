@@ -1,0 +1,32 @@
+// Restaurent App.
+
+
+designs: https://drive.google.com/drive/folders/0B_FxzYEinacKb3BGX3dETWRrZ1U
+         https://drive.google.com/drive/folders/0B_FxzYEinacKb3BGX3dETWRrZ1U
+
+
+//Accounts
+FB Developer
+life_weiwin94@hotmail.com
+
+Google Developer
+weiwin1021@gmail.com
+
+Uber Developer
+hyper.weiwin94@gmail.com
+
+Pw for all: 2017forziraf 
+
+//Google map
+https://console.developers.google.com/apis/credentials?project=ziraf-mvp&authuser=5
+
+
+support@zirafapp.com
+2017zirafsupport
+
+//iTunes
+ID: weiwin1021@gmail.com
+pw: 2017ZirafApp
+
+jack@mail.com
+jack123

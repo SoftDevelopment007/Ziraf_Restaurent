@@ -1,0 +1,111 @@
+<div class="message">
+  <div>
+    <button type="button" class="back-button btn btn-default btn-with-icon" ng-click="back()">
+      <i class="ion-chevron-left"></i>Back</button>
+  </div>
+  <div class="center">
+    <h2>New Restaurant</h2>
+  </div>
+  <div class="row margin">
+    <div class="col-md-5">
+      <div>
+        <h4>Location: </h4>
+      </div>
+      <div id="google-maps1"></div>
+    </div>
+    <div class="col-md-7">
+      <div class="form-group has-success">
+        <label class="control-label">&#9997; Name: </label>
+        <input type="text" class="form-control" ng-model="info.new_rest.name" placeholder="input new restaurant name.">
+      </div>
+      <div class="form-group has-success">
+        <label class="control-label">&#9997; Street Name: </label>
+        <input type="text" class="form-control" ng-model="info.new_rest.street_name" placeholder="input new restaurant street name.">
+      </div>
+      <div class="form-group has-success">
+        <label class="control-label">&#9997; PhoneNumber: </label>
+        <input type="text" class="form-control" ng-model="info.new_rest.phone_number" placeholder="input new restaurant phone_number.">
+      </div>
+      <div class="form-group has-success">
+        <label class="control-label">&#9997; Price: </label>
+        <div class="form-group">
+          <ui-select ng-model="info.new_rest.price" class="btn-group bootstrap-select form-control" ng-disabled="false" append-to-body="true"
+            search-enabled="false">
+            <ui-select-match placeholder="input new restaurant price.">
+              <span> {{info.new_rest.price}}</span>
+            </ui-select-match>
+            <ui-select-choices repeat="item in price_value | filter: $select.search">
+              <span ng-bind-html="item"></span>
+            </ui-select-choices>
+          </ui-select>
+        </div>
+      </div>
+      <div class="form-group has-success">
+        <h4 class="control-label">Opening Hours: </h4>
+        <div class="margin">
+          <table class="table" st-table="info.new_rest.opening_hours">
+            <tbody>
+              <tr ng-repeat="item in info.new_rest.opening_hours">
+                <td class="table-id middle">{{item}}</td>
+                <td class="table-id middle" style="width:10%">
+                  <button type="button" class="btn btn-danger btn-with-icon btn-xs" ng-click="remove_sub($index)">
+                    <i class="fa fa-times"></i>Remove</button>
+                </td>
+              </tr>
+              <tr>
+                <td class="middle">
+                  <input type="text" class="input-sm form-control" placeholder="Mon ~ Sat, All Days, Sat/Sun/PH : 07h30m ~ 20h30m, Close"
+                    ng-model="info.opening_hour">
+                </td>
+                <td class="middle" style="width:10%">
+                  <button class="btn btn-success btn-xs" ng-click="add_sub()">
+                    <i class="fa fa-plus"></i> Add</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="line"></div>
+  <div class="row margin">
+    <div class="col-md-5">
+      <div>
+        <h4>Main Picture: </h4>
+      </div>
+      <div class="userpic1">
+        <div class="userpic-wrapper">
+          <img ng-src="{{info.photo | noImage}}" ng-click="uploadPicture()" ng-show='info.photo==""'>
+          <img ng-src="{{info.photo}}" ng-click="uploadPicture()">
+        </div>
+        <a href class="change-userpic" ng-click="uploadPicture()">Change Picture</a>
+        <input type="file" ng-show="false" id="uploadFile" ng-file-select="onFileSelect($files)">
+      </div>
+    </div>
+    <div class="col-md-7">
+      <div class="form-group has-success">
+        <h4 class="control-label">Select Categories: </h4>
+        <div class="margin row">
+          <div class="form-group" ng-repeat='cat in info.cats'>
+            <h5>{{info.cat_titles[$index]}}:</h5>
+            <ui-select multiple ng-model="info.multipleItem[$index]" ng-disabled="false" search-enabled="true" append-to-body="true"
+              close-on-select="false" class="form-control ">
+              <ui-select-match placeholder="Select category names...">
+                {{$item.name}}
+              </ui-select-match>
+              <ui-select-choices repeat="multipleItem in cat | filter: $select.search">
+                {{multipleItem.name}}
+              </ui-select-choices>
+            </ui-select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="center">
+    <button class="btn btn-success" ng-click="add_rest()">
+      <i class="fa fa-plus"></i> Add New Restaurant</button>
+  </div>
+  <p>&nbsp;</p>
+</div>

@@ -1,0 +1,38 @@
+<div>
+  <p>&nbsp;</p>
+  <div class="right">
+    <button class="btn btn-success" ng-click="add()"><i class="fa fa-plus"></i> New Restaurant</button>
+  </div>
+  <p>&nbsp;</p>
+  <table class="table" st-table="info.rests">
+    <thead>
+    <tr>
+      <th>
+        <div class="input-group">
+          <input st-search="name" placeholder="Search Restaurant Name" class="form-control" type="search"><span class="input-group-addon addon-right"><i class="fa fa-search"></i></span>
+        </div>
+      </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="item in info.rests">
+      <td class="feed-message3 row">
+        <div class="message-icon col-md-5 padding no_margin" ng-click="showImg(item.pictures[0])">
+          <img ng-src="{{item.pictures[0] | myRestPhoto}}">
+        </div>
+        <div class="message-icon col-md-5 left padding no_margin">
+          <h4 class="user_span">Name: {{item.name}}</h4>
+          <p class="user_span">StreetName: {{item.street_name}}</p>
+          <p class="user_span">PhoneNumber: {{item.phone_number}}</p>
+          <p class="user_span">Price: <spna>&pound;</spna><spna ng-hide='item.price<2'>&pound;</spna><spna ng-hide='item.price<3'>&pound;</spna><spna ng-hide='item.price<4'>&pound;</spna><spna ng-hide='item.price<5'>&pound;</spna></p>
+        </div>
+        <div class="message-icon col-md-2 center padding no_margin">
+          <button type="button" class="btn btn-primary btn-with-icon btn-sm" ng-click="view(item._id)"><i class="fa fa-eye"></i>View</button>
+          <button type="button" class="btn btn-danger btn-with-icon btn-sm" ng-click="remove(item._id)"><i class="fa fa-times"></i>Remove</button>
+        </div>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <p>&nbsp;</p>
+</div>

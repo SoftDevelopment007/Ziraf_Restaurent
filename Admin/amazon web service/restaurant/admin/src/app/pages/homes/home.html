@@ -1,0 +1,40 @@
+<uib-tabset active="info.active">
+  <uib-tab heading="Home Pictures">
+    <div ba-panel ba-panel-class="xmedium-panel with-scroll light-text">
+      <div uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides">
+        <div uib-slide ng-repeat="slide in slides track by slide.id" index="slide.id" class="my_carousel">
+          <img ng-src="{{slide.image | myHomePhoto}}">
+          <button type='button' class="btn btn-danger btn-raised" ng-click='remove(slide.index)'><i class="fa fa-times"></i></button>
+        </div>
+      </div>
+    </div>
+  </uib-tab>
+  <uib-tab heading="New Picture">
+    <div ba-panel ba-panel-class="xmedium-panel with-scroll light-text">
+      <p>&nbsp;</p>
+      <div class="row">
+        <div class="col-md-offset-3 col-md-6">
+          <div class="form-group row clearfix">
+            <label class="col-sm-offset-1 col-sm-2 control-label">Picture:</label>
+            <div class="col-sm-9">
+              <div class="userpic1">
+                <div class="userpic-wrapper">
+                  <img ng-src="{{info.photo | noImage}}" ng-click="uploadPicture()" ng-show='info.photo==""'>
+                  <img ng-src="{{info.photo}}" ng-click="uploadPicture()">
+                </div>
+                <a href class="change-userpic" ng-click="uploadPicture()">Change Picture</a>
+                <input type="file" ng-show="false" id="uploadFile" ng-file-select="onFileSelect($files)">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p>&nbsp;</p>
+      <div class="row clearfix center">
+        <button type="button" class="btn btn-primary btn-with-icon save-profile" ng-click="add()">
+          <i class="ion-android-checkmark-circle"></i>Add Picture
+        </button>
+      </div>
+    </div>
+  </uib-tab>
+</uib-tabset>

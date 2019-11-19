@@ -1,0 +1,61 @@
+<div class="message">
+  <div>
+    <button type="button" class="back-button btn btn-default btn-with-icon" ng-click="back()"><i class="ion-chevron-left"></i>Back</button>
+  </div>
+  <div class="center">
+    <h2>New Zirafer</h2>
+  </div>
+  <div class="row margin">
+    <div class="col-md-4">
+      <div class="userpic1">
+        <div class="userpic-wrapper">
+          <img ng-src="{{info.photo | noImage}}" ng-click="uploadPicture()" ng-show='info.photo==""'>
+          <img ng-src="{{info.photo}}" ng-click="uploadPicture()">
+        </div>
+        <a href class="change-userpic" ng-click="uploadPicture()">Change Picture</a>
+        <input type="file" ng-show="false" id="uploadFile" ng-file-select="onFileSelect($files)">
+      </div>
+    </div>
+    <div class="col-md-8">
+      <div class="form-group has-success">
+        <label class="control-label">&#9997; Name: </label>
+        <input type="text" class="form-control" ng-model="info.new_zirafer.name" placeholder="input new zirafer name.">
+      </div>
+      <div class="line"></div>
+      <!-- <div class="form-group has-success">
+        <label class="control-label">&#9997; Profession: </label>
+        <input type="text" class="form-control" ng-model="info.new_zirafer.profession" placeholder="input new zirafer profession.">
+      </div>
+      <div class="line"></div> -->
+      <div class="form-group has-success">
+        <label class="control-label">&#9997; Quote: </label>
+        <input type="text" class="form-control" ng-model="info.new_zirafer.quote" placeholder="input new zirafer quote.">
+      </div>
+      <div class="line"></div>
+      <div class="form-group has-success">
+        <label class="control-label">Social Links: </label>
+        <div class="input-group">
+          <span class="input-group-addon addon-left input-group-addon-success"><i class="fa fa-facebook-official" aria-hidden="true"></i></span>
+          <input type="text" class="form-control with-success-addon" ng-model="info.new_zirafer.social_link[0]" placeholder="input new zirafer facebook link.">
+        </div>
+        <div class="input-group">
+          <span class="input-group-addon addon-left input-group-addon-success"><i class="fa fa-twitter" aria-hidden="true"></i></span>
+          <input type="text" class="form-control with-success-addon" ng-model="info.new_zirafer.social_link[1]" placeholder="input new zirafer twitter link.">
+        </div>
+        <div class="input-group">
+          <span class="input-group-addon addon-left input-group-addon-success"><i class="fa fa-instagram" aria-hidden="true"></i></span>
+          <input type="text" class="form-control with-success-addon" ng-model="info.new_zirafer.social_link[2]" placeholder="input new zirafer instagram link.">
+        </div>
+        <div class="input-group">
+          <span class="input-group-addon addon-left input-group-addon-success"><i class="fa fa-snapchat-ghost" aria-hidden="true"></i></span>
+          <input type="text" class="form-control with-success-addon" ng-model="info.new_zirafer.social_link[3]" placeholder="input new zirafer snapchat link.">
+        </div>
+      </div>
+      <div class="line"></div>
+    </div>
+  </div>
+  <div class="center">
+    <button class="btn btn-success" ng-click="add_zirafer()"><i class="fa fa-plus"></i> Add New Zirafer</button>
+  </div>
+  <p>&nbsp;</p>
+</div>

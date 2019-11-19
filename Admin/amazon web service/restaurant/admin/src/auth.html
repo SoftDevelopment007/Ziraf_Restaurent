@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ziraf</title>
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900italic,900&subset=latin,greek,greek-ext,vietnamese,cyrillic-ext,latin-ext,cyrillic' rel='stylesheet' type='text/css'>
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="assets/img/favicon-96x96.png">
+
+  <!-- build:css({.tmp/serve,src}) styles/vendor.css -->
+  <!-- bower:css -->
+  <!-- run `gulp inject` to automatically populate bower styles dependencies -->
+  <!-- endbower -->
+  <!-- endbuild -->
+
+  <!-- build:css({.tmp/serve,src}) styles/auth.css -->
+  <!-- inject:css -->
+  <!-- css files will be automatically insert here -->
+  <!-- endinject -->
+  <!-- endbuild -->
+<body>
+  <main class="auth-main">
+    <div class="auth-block">
+      <h1>Sign in to Ziraf Admin</h1>
+      <div class="alert" id="l-error"></div>
+      <div>
+        <div class="form-group">
+          <label for="email" class="col-sm-3 control-label">Email</label>
+          <div class="col-sm-9">
+            <input type="email" class="form-control" id="email" placeholder="Email">
+          </div>
+          <span class="col-sm-offset-4 help-block error-block basic-block">Proper email required</span>
+        </div>        
+        <p>&nbsp;</p>
+        <div class="form-group">
+          <label for="pass" class="col-sm-3 control-label">Password</label>
+          <div class="col-sm-9">
+            <input type="password" class="form-control" id="pass" placeholder="Password">
+          </div>
+          <span class="col-sm-offset-4 help-block error-block basic-block">Proper password required</span>
+        </div>        
+        <p>&nbsp;</p>
+        <div>
+          <div class="col-sm-offset-2 col-sm-10">
+            <button class="btn btn-default btn-auth" id="login">Sign in</button>
+            <a href="reg.html" class="forgot-pass">Reset admin?</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <!-- build:js(src) scripts/vendor.js -->
+  <!-- bower:js -->
+  <!-- run `gulp inject` to automatically populate bower script dependencies -->
+  <!-- endbower -->
+  <!-- endbuild -->
+  <script type="text/javascript" src="app/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,268 @@
+<div>
+	<button type="button" class="back-button btn btn-default btn-with-icon" ng-click="back()">
+		<i class="ion-chevron-left"></i>Back</button>
+</div>
+<p>&nbsp;</p>
+<uib-tabset>
+	<uib-tab heading="Detail">
+		<div ba-panel ba-panel-class="xmedium-panel with-scroll light-text">
+			<div class="row margin">
+				<div class="col-md-5">
+					<div>
+						<h4>Location: </h4>
+					</div>
+					<div id="google-maps2"></div>
+				</div>
+				<div class="col-md-7">
+					<div class="row">
+						<div class="col col-md-6">
+							<h4 class="control-label">&#9997; Name:</h4>
+						</div>
+						<div class="col col-md-6">
+							<p editable-textarea="info.rest.name" e-placeholder="input content." e-required>{{info.rest.name}}</p>
+						</div>
+					</div>
+					<div class="line"></div>
+					<div class="row">
+						<div class="col col-md-6">
+							<h4 class="control-label">&#9997; Street Name:</h4>
+						</div>
+						<div class="col col-md-6">
+							<p editable-textarea="info.rest.street_name" e-placeholder="input content." e-required>{{info.rest.street_name}}</p>
+						</div>
+					</div>
+					<div class="line"></div>
+					<div class="row">
+						<div class="col col-md-6">
+							<h4 class="control-label">&#9997; PhoneNumber:</h4>
+						</div>
+						<div class="col col-md-6">
+							<p editable-textarea="info.rest.phone_number" e-placeholder="input content." e-required>{{info.rest.phone_number}}</p>
+						</div>
+					</div>
+					<div class="line"></div>
+					<div class="row">
+						<div class="col col-md-6">
+							<h4 class="control-label">&#9997; Price:</h4>
+						</div>
+						<div class="col col-md-6">
+							<div class="form-group">
+								<ui-select ng-model="info.rest.price" class="btn-group bootstrap-select form-control" ng-disabled="false" append-to-body="true"
+								 search-enabled="false">
+									<ui-select-match placeholder="Select Price Value">
+										<span> {{info.rest.price}}</span>
+									</ui-select-match>
+									<ui-select-choices repeat="item in price_value | filter: $select.search">
+										<span ng-bind-html="item"></span>
+									</ui-select-choices>
+								</ui-select>
+							</div>
+						</div>
+					</div>
+					<div class="line"></div>
+					<div class="row">
+						<div class="col col-md-6">
+							<h4 class="control-label">Opening Hours:</h4>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col col-md-offset-1 col-md-11">
+							<table class="table" st-table="info.rest.opening_hours">
+								<tbody>
+									<tr ng-repeat="item in info.rest.opening_hours">
+										<td class="table-id middle">{{item}}</td>
+										<td class="table-id middle" style="width:10%">
+											<button type="button" class="btn btn-danger btn-with-icon btn-xs" ng-click="remove_sub1($index)">
+												<i class="fa fa-times"></i>Remove</button>
+										</td>
+									</tr>
+									<tr>
+										<td class="middle">
+											<input type="text" class="input-sm form-control" placeholder="Mon ~ Sat, All Days, Sat/Sun/PH : 07h30m ~ 20h30m, Close" ng-model="info.opening_hour1">
+										</td>
+										<td class="middle" style="width:10%">
+											<button class="btn btn-success btn-xs" ng-click="add_sub1()">
+												<i class="fa fa-plus"></i> Add</button>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<div class="line"></div>
+					<div class="row">
+						<div class="col col-md-6">
+							<h4 class="control-label">Categories:</h4>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col col-md-offset-1 col-md-11">
+							<div class="form-group" ng-repeat='cat in info.cats'>
+								<h5>{{info.cat_titles[$index]}}:</h5>
+								<ui-select multiple ng-model="info.multipleItem[$index]" ng-disabled="false" search-enabled="true" append-to-body="true"
+								 close-on-select="false" class="form-control ">
+									<ui-select-match placeholder="Select category names...">
+										{{$item.name}}
+									</ui-select-match>
+									<ui-select-choices repeat="multipleItem in cat | filter: $select.search">
+										{{multipleItem.name}}
+									</ui-select-choices>
+								</ui-select>
+							</div>
+						</div>
+					</div>
+					<div class="line"></div>
+				</div>
+			</div>
+			<div class="right">
+				<button class="btn btn-success" ng-click="change_rest()">
+					<i class="fa fa-pencil-square-o"></i> Change Restaurant Info</button>
+			</div>
+		</div>
+	</uib-tab>
+	<uib-tab heading="Photos" ng-click="init_photo()">
+		<div ba-panel ba-panel-class="xmedium-panel with-scroll light-text" id="photo">
+			<div class="feed-message3 center ">
+				<div ui:sortable="sortableOptions" ng:model="info.rest.pictures">
+					<div class="message-icon" ng-repeat="img_url in info.rest.pictures track by $index" id="drag_img" gridster="gridsterOpts">
+						<img ng-src="{{img_url | myRestPhoto}}" ng-click="showImg(img_url)" id="res_image">
+						<div class="userpic1" ng-click="deleteItem(img_url)">
+							<a href class="change-userpic">delete</a>
+						</div>
+					</div>
+				</div>
+				<div class="message-icon">
+					<div class="userpic1">
+						<div class="userpic-wrapper">
+							<img ng-src="{{info.photo | noImage}}" ng-show='info.photo==""' ng-click="uploadPicture()" class="table_img">
+							<img ng-src="{{info.photo}}" ng-click="uploadPicture()" ng-hide='info.photo==""' class="table_img">
+						</div>
+						<a href class="change-userpic" ng-click="uploadPicture()">add</a>
+						<input type="file" ng-show="false" id="uploadFile" ng-file-select="onFileSelect($files)">
+					</div>
+				</div>
+			</div>
+		</div>
+		</div>
+		<div class="right">
+			<button class="btn btn-success" ng-click="add_photo()">
+				<i class="fa fa-upload"></i> {{info.btn1}}</button>
+		</div>
+	</uib-tab>
+	<uib-tab heading="Top Picks">
+		<div ba-panel ba-panel-class="xmedium-panel with-scroll light-text">
+			<table class="table" st-table="info.top_picks">
+				<thead>
+					<tr>
+						<th>
+							<div class="input-group">
+								<input st-search="zirafer.name" placeholder="Search Zirafer Name" class="form-control" type="search">
+								<span class="input-group-addon addon-right">
+									<i class="fa fa-search"></i>
+								</span>
+							</div>
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-hide='info.top_picks.length==0'>
+						<td class="feed-message3 row">
+							<div class="message-icon col-md-8 padding no_margin">
+								<h4>Zirafer Info</h4>
+							</div>
+							<div class="message-icon col-md-4 padding no_margin">
+								<h4>Top Pick</h4>
+							</div>
+						</td>
+					</tr>
+					<tr ng-repeat="item in info.top_picks">
+						<td class="feed-message3 row">
+							<div class="message-icon col-md-4 padding no_margin">
+								<img ng-src="{{item.zirafer.id | myZiraferPhoto}}">
+							</div>
+							<div class="message-icon col-md-4 left padding no_margin">
+								<h4 class="email_link">{{item.zirafer.name}}</h4>
+								<p class="user_span">
+									<i class="fa fa-sign-in"></i> Created: {{item.created_date | date : 'y-MM-d'}}</p>
+							</div>
+							<div class="message-icon col-md-4 padding no_margin" ng-click='showImg1(item._id)'>
+								<img ng-src="{{item._id | myTopPhoto}}">
+								<p class="user_span no_margin">{{item.description}}</p>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</uib-tab>
+	<uib-tab heading="Menu">
+		<div ba-panel ba-panel-class="xmedium-panel with-scroll light-text">
+			<div class="row">
+				<div class="col col-md-6 center">
+					<input type="file" name="avatar" id="file" class="inputfile" required>
+					<label for="file" style="margin-top:16px;">
+						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17">
+							<path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"
+							/>
+						</svg>
+						<span>Choose a file&hellip;</span>
+					</label>
+				</div>
+				<div class="col col-md-6 center">
+					<button class="btn btn-success" ng-click="add_menu()" style="margin-top:16px;">
+						<i class="fa fa-upload"></i> {{info.btn3}}</button>
+				</div>
+			</div>
+			<div class="line"></div>
+			<div id="pdf_view"></div>
+		</div>
+	</uib-tab>
+	<uib-tab heading="Reviews">
+		<div ba-panel ba-panel-class="xmedium-panel with-scroll light-text">
+			<h4>Rating: {{info.rest.rating}} / 10.0</h4>
+			<div class="line"></div>
+			<table class="table" st-table="info.reviews">
+				<thead>
+					<tr>
+						<th>
+							<div class="input-group">
+								<input st-search="zirafer.name" placeholder="Search Zirafer Name" class="form-control" type="search">
+								<span class="input-group-addon addon-right">
+									<i class="fa fa-search"></i>
+								</span>
+							</div>
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-hide="info.reviews.length==0">
+						<td class="feed-message3 row">
+							<div class="message-icon col-md-6 padding no_margin">
+								<h4>Zirafer Info</h4>
+							</div>
+							<div class="message-icon col-md-6 padding no_margin">
+								<h4>Review</h4>
+							</div>
+						</td>
+					</tr>
+					<tr ng-repeat="item in info.reviews">
+						<td class="feed-message3 row">
+							<div class="message-icon col-md-3 padding no_margin">
+								<img ng-src="{{item.zirafer.id | myZiraferPhoto}}">
+							</div>
+							<div class="message-icon col-md-3 left padding no_margin">
+								<h4 class="email_link">{{item.zirafer.name}}</h4>
+								<p class="user_span">
+									<i class="fa fa-sign-in"></i> Created: {{item.created_date | date : 'y-MM-d'}}</p>
+							</div>
+							<div class="message-icon col-md-6 left padding no_margin">
+								<h4 class="user_span">Rating: {{item.rating[4]}} / 10.0</h4>
+								<p class="user_span">Review: {{item.review}}</p>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</uib-tab>
+</uib-tabset>

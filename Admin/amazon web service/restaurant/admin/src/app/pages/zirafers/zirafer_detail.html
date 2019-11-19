@@ -1,0 +1,298 @@
+<div>
+  <button type="button" class="back-button btn btn-default btn-with-icon" ng-click="back()">
+    <i class="ion-chevron-left"></i>Back</button>
+</div>
+<p>&nbsp;</p>
+<uib-tabset>
+  <uib-tab heading="Detail">
+    <div ba-panel ba-panel-class="xmedium-panel with-scroll light-text">
+      <div class="row margin">
+        <div class="col-md-4">
+          <!-- <img ng-src="{{info.zirafer._id | myZiraferPhoto}}" class="profile"> -->
+          <div class="userpic1">            
+            <div class="userpic-wrapper">
+              <img ng-src="{{info.zirafer._id | myZiraferPhoto}}" ng-click="uploadPicture()" ng-show='info.photo==""'>
+              <img ng-src="{{info.photo}}">
+            </div> 
+            <a href class="change-userpic" ng-click="uploadPicture()">Change Picture</a>
+            <input type="file" ng-show="false" id="uploadFile" ng-file-select="onFileSelect($files)">
+          </div>
+        </div>
+        <div class="col-md-8">
+          <div class="row">
+            <div class="col col-md-5">
+              <h4 class="control-label">&#9997; Name:</h4>
+            </div>
+            <div class="col col-md-7">
+              <p editable-textarea="info.zirafer.name" e-placeholder="input content." e-required>{{info.zirafer.name}}</p>
+            </div>
+          </div>
+          <div class="line"></div>
+          <!-- <div class="row">
+            <div class="col col-md-5">
+              <h4 class="control-label">&#9997; Profession:</h4>
+            </div>
+            <div class="col col-md-7">
+              <p editable-textarea="info.zirafer.profession" e-placeholder="input content." e-required>{{info.zirafer.profession}}</p>
+            </div>
+          </div>
+          <div class="line"></div> -->
+          <div class="row">
+            <div class="col col-md-5">
+              <h4 class="control-label">&#9997; Quote:</h4>
+            </div>
+            <div class="col col-md-7">
+              <p editable-textarea="info.zirafer.quote" e-placeholder="input content." e-required>{{info.zirafer.quote}}</p>
+            </div>
+          </div>
+          <div class="line"></div>
+          <div class="row">
+            <div class="col col-md-5">
+              <h4 class="control-label">Social Links:</h4>
+            </div>
+            <div class="col col-md-7">
+              <div class="input-group">
+                <span class="input-group-addon addon-left input-group-addon-success">
+                  <i class="fa fa-facebook-official" aria-hidden="true"></i>
+                </span>
+                <input type="text" class="form-control with-success-addon" ng-model="info.zirafer.social_link[0]" placeholder="input zirafer facebook link.">
+              </div>
+              <div class="input-group">
+                <span class="input-group-addon addon-left input-group-addon-success">
+                  <i class="fa fa-twitter" aria-hidden="true"></i>
+                </span>
+                <input type="text" class="form-control with-success-addon" ng-model="info.zirafer.social_link[1]" placeholder="input zirafer twitter link.">
+              </div>
+              <div class="input-group">
+                <span class="input-group-addon addon-left input-group-addon-success">
+                  <i class="fa fa-instagram" aria-hidden="true"></i>
+                </span>
+                <input type="text" class="form-control with-success-addon" ng-model="info.zirafer.social_link[2]" placeholder="input zirafer instagram link.">
+              </div>
+              <div class="input-group">
+                <span class="input-group-addon addon-left input-group-addon-success">
+                  <i class="fa fa-snapchat-ghost" aria-hidden="true"></i>
+                </span>
+                <input type="text" class="form-control with-success-addon" ng-model="info.zirafer.social_link[3]" placeholder="input zirafer snapchat link.">
+              </div>
+            </div>
+          </div>
+          <div class="line"></div>
+        </div>
+      </div>
+      <div class="right">
+        <button class="btn btn-success" ng-click="change_zirafer()">
+          <i class="fa fa-pencil-square-o"></i> Change</button>
+      </div>
+    </div>
+  </uib-tab>
+  <uib-tab heading="Photos">
+    <div ba-panel ba-panel-class="xmedium-panel with-scroll light-text">
+      <h4>New Photo</h4>
+      <div class="line"></div>
+      <div class="row margin">
+        <div class="col col-md-3">
+          <h4 class="control-label">&#9997; Restaurants:</h4>
+        </div>
+        <div class="col col-md-3">
+          <div class="btn-group" uib-dropdown dropdown-append-to-body>
+            <button type="button" class="btn btn-default" uib-dropdown-toggle>
+              {{info.restaurants[info.sel_rest].name}}
+              <span class="caret"></span>
+            </button>
+            <ul uib-dropdown-menu>
+              <li ng-repeat="item in info.restaurants">
+                <a ng-click='sel_rest($index)'>{{item.name}}</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col col-md-5">
+          <img ng-src="{{info.restaurants[info.sel_rest].pictures[0] | myRestPhoto}}" class="profile">
+        </div>
+      </div>
+      <div class="row margin">
+        <div class="col col-md-3">
+          <h4 class="control-label">&#9997; Short Description:</h4>
+        </div>
+        <div class="col col-md-9">
+          <input type="text" class="input-sm form-control" placeholder="input short description." ng-model="info.description">
+        </div>
+      </div>
+      <div class="row margin">
+        <div class="col col-md-3">
+          <h4 class="control-label">&#9997; Photo:</h4>
+        </div>
+        <div class="col col-md-9">
+          <div class="userpic1">
+            <div class="userpic-wrapper">
+              <img ng-src="{{info.photo | noImage}}" ng-click="uploadPicture()" ng-show='info.photo==""'>
+              <img ng-src="{{info.photo}}" ng-click="uploadPicture()" ng-hide='info.photo==""'>
+            </div>
+            <a href class="change-userpic" ng-click="uploadPicture()">Change Picture</a>
+            <input type="file" ng-show="false" id="uploadFile" ng-file-select="onFileSelect($files)">
+          </div>
+        </div>
+      </div>
+      <div class="right">
+        <button class="btn btn-success" ng-click="submit_photo()">
+          <i class="fa fa-upload"></i> {{btn_label}}</button>
+      </div>
+    </div>
+    <div ba-panel ba-panel-class="xmedium-panel with-scroll light-text">
+      <h4>Photos</h4>
+      <table class="table" st-table="info.top_picks">
+        <tbody>
+          <tr ng-hide='info.top_picks.length==0'>
+            <td class="feed-message3 row">
+              <div class="message-icon col-md-6 padding no_margin">
+                <h4>Restaurant Info</h4>
+              </div>
+              <div class="message-icon col-md-4 padding no_margin">
+                <h4>Submit Photo</h4>
+              </div>
+              <div class="message-icon col-md-2 padding no_margin">
+              </div>
+            </td>
+          </tr>
+          <tr ng-repeat="item in info.top_picks">
+            <td class="feed-message3 row">
+              <div class="message-icon col-md-3 padding no_margin">
+                <img ng-src="{{item.restaurant.pictures[0] | myRestPhoto}}">
+              </div>
+              <div class="message-icon col-md-3 left padding no_margin">
+                <h4 class="user_span">Name: {{item.restaurant.name}}</h4>
+                <p class="user_span">{{item.restaurant.phone_number}}</p>
+                <p class="user_span">Price:
+                  <spna>&pound;</spna>
+                  <spna ng-hide='item.restaurant.price<2'>&pound;</spna>
+                  <spna ng-hide='item.restaurant.price<3'>&pound;</spna>
+                  <spna ng-hide='item.restaurant.price<4'>&pound;</spna>
+                  <spna ng-hide='item.restaurant.price<5'>&pound;</spna>
+                </p>
+              </div>
+              <div class="message-icon col-md-4 padding no_margin" ng-click='showImg(item._id)'>
+                <img ng-src="{{item._id | myTopPhoto}}">
+                <p class="user_span no_margin">{{item.description}}</p>
+              </div>
+              <div class="message-icon col-md-2 padding no_margin">
+                <button type="button" class="btn btn-danger btn-with-icon btn-sm user_btn" ng-click="remove_top(item._id)">
+                  <i class="fa fa-times"></i>Remove</button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </uib-tab>
+  <uib-tab heading="Reviews">
+    <div ba-panel ba-panel-class="xmedium-panel with-scroll light-text">
+      <h4>New Review</h4>
+      <div class="line"></div>
+      <div class="row margin">
+        <div class="col col-md-3">
+          <h4 class="control-label">&#9997; Restaurants:</h4>
+        </div>
+        <div class="col col-md-3">
+          <div class="btn-group" uib-dropdown dropdown-append-to-body>
+            <button type="button" class="btn btn-default" uib-dropdown-toggle>
+              {{info.restaurants[info.sel_rest].name}}
+              <span class="caret"></span>
+            </button>
+            <ul uib-dropdown-menu>
+              <li ng-repeat="item in info.restaurants">
+                <a ng-click='sel_rest($index)'>{{item.name}}</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col col-md-5">
+          <img ng-src="{{info.restaurants[info.sel_rest].pictures[0] | myRestPhoto}}" class="profile">
+        </div>
+      </div>
+      <div class="row margin">
+        <div class="col col-md-3">
+          <h4 class="control-label">&#9997; Review:</h4>
+        </div>
+        <div class="col col-md-9">
+          <textarea type="text" class="input-sm form-control" placeholder="input review." ng-model="info.review.review"></textarea>
+        </div>
+      </div>
+      <div class="row margin">
+        <div class="col-md-3">
+          <h4 class="control-label">&#9997; Rating:</h4>
+        </div>
+        <div class="col-md-9">
+          <div class="row margin" ng-repeat="item in rating_param">
+            <div class="col-md-6">
+              <p>{{item}}</p>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <ui-select ng-model="info.review.rating[$index]" class="btn-group bootstrap-select form-control" ng-disabled="false" append-to-body="true"
+                  search-enabled="false">
+                  <ui-select-match placeholder="Select Rating Value">
+                    <span> {{info.review.rating[$index]}}</span>
+                  </ui-select-match>
+                  <ui-select-choices repeat="item in rating_value | filter: $select.search">
+                    <span ng-bind-html="item"></span>
+                  </ui-select-choices>
+                </ui-select>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="right">
+        <button class="btn btn-success" ng-click="submit_review()">
+          <i class="fa fa-upload"></i> Submit Review</button>
+      </div>
+    </div>
+    <div ba-panel ba-panel-class="xmedium-panel with-scroll light-text">
+      <h4>Reviews</h4>
+      <table class="table" st-table="info.reviews">
+        <tbody>
+          <tr ng-hide='info.reviews.length==0'>
+            <td class="feed-message3 row">
+              <div class="message-icon col-md-5 padding no_margin">
+                <h4>Restaurant Info</h4>
+              </div>
+              <div class="message-icon col-md-5 padding no_margin">
+                <h4>Submit Review</h4>
+              </div>
+              <div class="message-icon col-md-2 padding no_margin">
+              </div>
+            </td>
+          </tr>
+          <tr ng-repeat="item in info.reviews">
+            <td class="feed-message3 row">
+              <div class="message-icon col-md-3 padding no_margin">
+                <img ng-src="{{item.restaurant.pictures[0] | myRestPhoto}}">
+              </div>
+              <div class="message-icon col-md-2 left padding no_margin">
+                <h4 class="user_span">Name: {{item.restaurant.name}}</h4>
+                <p class="user_span">{{item.restaurant.phone_number}}</p>
+                <p class="user_span">Price:
+                  <spna>&pound;</spna>
+                  <spna ng-hide='item.restaurant.price<2'>&pound;</spna>
+                  <spna ng-hide='item.restaurant.price<3'>&pound;</spna>
+                  <spna ng-hide='item.restaurant.price<4'>&pound;</spna>
+                  <spna ng-hide='item.restaurant.price<5'>&pound;</spna>
+                </p>
+              </div>
+              <div class="message-icon col-md-5 padding no_margin">
+                <h4 class="user_span">Rating: {{item.rating[4]}} / 10.0</h4>
+                <p class="user_span">({{item.rating[0]}}, {{item.rating[1]}}, {{item.rating[2]}}, {{item.rating[3]}})</p>
+                <p class="user_span">Review: {{item.review}}</p>
+              </div>
+              <div class="message-icon col-md-2 padding no_margin">
+                <button type="button" class="btn btn-danger btn-with-icon btn-sm user_btn" ng-click="remove_review(item._id)">
+                  <i class="fa fa-times"></i>Remove</button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </uib-tab>
+</uib-tabset>

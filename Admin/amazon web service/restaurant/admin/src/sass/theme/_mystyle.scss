@@ -1,0 +1,180 @@
+.margin {
+  margin: 16px;
+}
+.no_margin {
+  margin: 0px!important;
+}
+.no_padding {
+  padding: 0px!important;
+}
+.padding {
+  padding: 10px!important;
+}
+.center { 
+  text-align: center!important;
+}
+.left { 
+  text-align: left!important;
+}
+.right { 
+  text-align: right!important;
+}
+.middle {
+  vertical-align: middle!important;
+}
+.feed-message1 {
+  $text-message-color: $default-text;
+  $video-message-color: $danger;
+  $image-message-color: $success;
+  $geo-message-color: $primary;
+  padding: 0 0 10px 0 ;
+  box-shadow: 0px 1px 0px 0px rgba(255, 255, 255, 0.12);
+
+  .message-icon {
+    cursor: pointer;
+    float: left;
+    position: relative;
+    margin: 10px;
+    > img, .media-icon {
+      border-radius: 25px;
+      width: 50px;
+      height: 100%;      
+    }
+  }
+}
+.feed-message2 {
+  $text-message-color: $default-text;
+  $video-message-color: $danger;
+  $image-message-color: $success;
+  $geo-message-color: $primary;
+  padding: 0 0 10px 0 ;
+  box-shadow: 0px 1px 0px 0px rgba(255, 255, 255, 0.12);
+
+  .message-icon {
+    cursor: pointer;
+    float: left;
+    position: relative;
+    margin: 10px;
+    > img, .media-icon {
+      width: 80px!important;
+      height: 80px!important;
+    }
+  }
+}
+.feed-message3 {
+  $text-message-color: $default-text;
+  $video-message-color: $danger;
+  $image-message-color: $success;
+  $geo-message-color: $primary;
+  padding: 0 0 10px 0 ;
+  box-shadow: 0px 1px 0px 0px rgba(255, 255, 255, 0.12);
+
+  .message-icon {
+    cursor: pointer;
+    float: left;
+    position: relative;
+    margin: 10px;
+    > img, .media-icon {
+      width: auto!important;
+      height: 80px!important;
+    }
+  }
+}
+.table_img {
+  width: auto!important;
+  height: 80px!important;
+  max-width: auto!important;
+  min-height: 80px!important;
+}
+.table_img1 {
+  margin: 30px!important;
+  img {
+    width: auto!important;
+    height: 180px!important;
+    max-width: auto!important;
+    min-height: 180px!important;
+  }
+}
+.modal_img {
+  margin-left: calc(50% - 200px);
+  width: 400px;
+}
+
+.email_link {
+  margin-top: 16px;
+}
+.user_span {
+  font-size: 16px;
+  line-height: 20px!important;
+  i {
+    margin-right: 8px;
+  }
+  img {
+    margin-right: 8px;
+    width: 18px;
+    height: 18px;
+  }
+}
+.user_btn { 
+  margin-top: 35px;
+}
+.profile {
+  width: 100%;
+  height: auto;
+}
+.my_p {
+  margin-bottom: 0px;
+  line-height: 1.4;
+}
+.my_carousel {
+  border: 0!important;
+  > img {
+    margin:auto;
+    height:500px!important;
+  }
+  > button {
+    position: absolute;
+    top: 10px;
+    left: 80%;
+  }
+}
+
+.inputfile {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+.inputfile + label {
+  max-width: 80%;
+    font-size: 16px;
+    font-weight: 700;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: inline-block;
+    padding: 8px 20px;
+    cursor: pointer;
+    overflow: hidden;
+    color: #f1e5e6;
+    background-color: #d3394c;
+}
+.inputfile + label svg {
+    width: 1em;
+    height: 1em;
+    vertical-align: middle;
+    fill: currentColor;
+    margin-top: 4px;
+    margin-right: 4px;
+}
+.inputfile:focus + label,
+.inputfile.has-focus + label,
+.inputfile + label:hover {
+    background-color: #722040;
+}
+
+.pdfobject-container { height: 600px;}
+.pdfobject { border: 1px solid #666; }
+
+
